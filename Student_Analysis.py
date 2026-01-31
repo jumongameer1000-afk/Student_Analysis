@@ -1,0 +1,20 @@
+import pandas as pd
+import streamlit as st
+st.title("Student Performance Analysis")
+df=pd.read_csv("Analysis.csv")
+
+st.subheader("Dataset Preview")
+st.dataframe(df.head())
+st.subheader("Dataset Summary")
+st.write(df.describe())
+
+if st.button("show Dataset"):
+	st.dataframe(df)
+min_age=st.slider("select minimum age",0,24,39)
+filtered_df=df[df["age"]>=min_age]
+st.dataframe(filtered_df) 
+
+df=pd.read_csv("Analysis.csv")
+st.dataframe(df)
+
+st.bar_chart(df["name"].value_counts())
